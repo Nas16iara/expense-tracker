@@ -1,5 +1,5 @@
 import {users} from '../dummyData/data.js';
-import {User} from '../models/user.model.js';
+import User from '../models/user.model.js';
 import bcrypt from 'bcryptjs';
 
 const userResolvers = {
@@ -53,12 +53,12 @@ const userResolvers = {
         logout: async(_,__,context) => {
             try {
                 await context.logout();
-                req.session.destroy((err) => {
+                context.req.session.destroy((err) => {
                     if(err) {
                         throw err;
                     } 
                 });
-                res.clearCookie('connect.sid');
+                context.res.clearCookie('connect.sid');
                 
                 return { message: "Successfully logged out" };
             } catch (err) {

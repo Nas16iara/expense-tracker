@@ -19,7 +19,6 @@ import mergedTypeDefs from "./typeDefs/index.js";
 import { connectDB } from "./db/connectDB.js";
 import { configurePassport } from "./passport/passport.config.js";
 
-
 dotenv.config();
 configurePassport();
 const app = express();
@@ -75,7 +74,6 @@ app.use(
     context: async ({ req, res }) => buildContext({ req, res }),
   })
 );
-
 
 // Modified server startup
 await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));

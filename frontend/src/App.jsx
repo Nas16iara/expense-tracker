@@ -14,7 +14,6 @@ function App() {
   const { loading, data } = useQuery(GET_AUTHENTICATED_USER);
 
   if (loading) return null;
-  console.log( data );
   return (
     <>
       {data?.authUser && <Header />}

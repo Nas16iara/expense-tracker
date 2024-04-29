@@ -23,7 +23,6 @@ const TransactionPage = () => {
     UPDATE_TRANSACTION,
     {
       refetchQueries: [{ query: GET_TRANSACTION_STATISTICS }],
-      refetchQueries: [{ query: GET_TRANSACTION }],
     }
   );
 

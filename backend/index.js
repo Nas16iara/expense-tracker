@@ -21,7 +21,9 @@ import { configurePassport } from "./passport/passport.config.js";
 
 dotenv.config();
 configurePassport();
+
 const app = express();
+const __dirname = path.resolve();
 
 const httpServer = http.createServer(app);
 
@@ -74,6 +76,12 @@ app.use(
     context: async ({ req, res }) => buildContext({ req, res }),
   })
 );
+
+// npm run build will build frontend app, it will be the optimized version of your app
+app.use(express.static(path.join(__dirname, "frontend/dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend/dist", "index.html"));
+});
 
 // Modified server startup
 await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
